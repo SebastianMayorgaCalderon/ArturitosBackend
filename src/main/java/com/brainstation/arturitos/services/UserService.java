@@ -47,10 +47,21 @@ public class UserService {
                 userinfo.put("token",jwtUtil.generateToken(userToSearch.get().getUsername(),userToSearch.get().getEmail(),userToSearch.get().getUsername()));
                 return userinfo;
             }else{
-                throw new MyExeption("Username and passowrd does not match");
+                throw new MyExeption("Username /Password not valid");
             }
         }else{
-            throw new MyExeption("User does no texist");
+            throw new MyExeption("User does not exist");
+        }
+    }
+    public boolean uploadImage(User user) throws MyExeption {
+        Optional<UserDTO> userDTO = userRepository.getByUsernameAndEmail(user.getUsername(),user.getEmail());
+        if(userDTO.isPresent()){
+            UserDTO userToUpdate = userDTO.get();
+            userToUpdate.setUserProfileImgUrl(user.getUserImgUrl());
+            userRepository.save(userToUpdate);
+            return true;
+        }else{
+            throw new MyExeption("User does not exist");
         }
     }
 }

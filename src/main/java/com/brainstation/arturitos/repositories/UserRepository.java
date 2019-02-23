@@ -9,5 +9,7 @@ public interface UserRepository extends JpaRepository<UserDTO, Integer> {
 
     Optional<UserDTO> getByUsernameOrEmail(String username, String email);
 
+    Optional<UserDTO> getByUsernameAndEmail(String username, String email);
+
     Optional<UserDTO> getByUsername(String username);
 }

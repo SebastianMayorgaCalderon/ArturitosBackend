@@ -23,6 +23,15 @@ public class ProductOrderDTO {
     @Column(name = "cuantity")
     private int cuantity;
 
+    public ProductOrderDTO() {
+    }
+
+    public ProductOrderDTO(ProductDTO productDTO, OrderDTO orderDTO, int cuantity) {
+        this.productDTO = productDTO;
+        this.orderDTO = orderDTO;
+        this.cuantity = cuantity;
+    }
+
     public int getId() {
         return id;
     }

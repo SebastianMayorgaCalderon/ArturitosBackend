@@ -18,7 +18,7 @@ public class UserDTO {
     @Column(name="username",unique=true)
     private String username;
 
-    @Column(name="password",unique=true)
+    @Column(name="password")
     private String password;
 
     @Column(name="email",unique=true)

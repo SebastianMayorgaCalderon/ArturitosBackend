@@ -10,10 +10,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class InterceptorsConfiguration implements WebMvcConfigurer {
 
     @Override
-    public void addInterceptors(InterceptorRegistry regisrty){
-        regisrty.addInterceptor(new MyRequestHeaderInterceptor(new JwtUtil()))
+    public void addInterceptors(InterceptorRegistry registry){
+        registry.addInterceptor(new MyRequestHeaderInterceptor(new JwtUtil()))
                 .excludePathPatterns("/user")
                 .excludePathPatterns("/user/*")
+                .excludePathPatterns("/user/uploadImage")
+                .excludePathPatterns("/user/login")
                 .excludePathPatterns("/product")
                 .excludePathPatterns("/product/*")
                 .excludePathPatterns("/category");

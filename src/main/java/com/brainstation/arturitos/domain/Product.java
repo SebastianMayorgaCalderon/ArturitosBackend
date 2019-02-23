@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Product {
+    private int id;
     private String productName;
     private String description;
     private String seller;
     private double price;
-    private int likes, dislikes;
     private List<ProductImage> productImages;
     private List<Category> categories;
 
@@ -23,8 +23,7 @@ public class Product {
         this.productName = productDTO.getName();
         this.description = productDTO.getDesription();
         this.seller = productDTO.getSeller();
-        this.likes = productDTO.getLikes();
-        this.dislikes= productDTO.getDislikes();
+        this.id= productDTO.getId();
     }
 
     public String getProductName() {
@@ -59,22 +58,6 @@ public class Product {
         this.price = price;
     }
 
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public int getDislikes() {
-        return dislikes;
-    }
-
-    public void setDislikes(int dislikes) {
-        this.dislikes = dislikes;
-    }
-
     public List<ProductImage> getProductImages() {
         return productImages;
     }
@@ -89,5 +72,13 @@ public class Product {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

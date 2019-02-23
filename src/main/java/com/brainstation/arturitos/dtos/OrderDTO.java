@@ -27,6 +27,11 @@ public class OrderDTO {
     @Column(name="type")
     private String type;
 
+    @Column(name="status")
+    private String status;
+
+    @Column(name = "name")
+    private String name;
 
     public int getId() {
         return id;
@@ -66,5 +71,21 @@ public class OrderDTO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -4,6 +4,7 @@ package com.brainstation.arturitos.Web;
 import com.brainstation.arturitos.domain.User;
 import com.brainstation.arturitos.services.UserService;
 import com.brainstation.arturitos.utils.GroupValidator;
+import com.brainstation.arturitos.utils.ImageUploadValidatorGroup;
 import com.brainstation.arturitos.utils.LoginValidatorGroup;
 import com.brainstation.arturitos.utils.MyExeption;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,16 @@ public class UserController {
             return new ResponseEntity<>(new MyResponce<>(null,exeption.getMessage()),HttpStatus.CONFLICT);
         }catch (Exception ex){
             return new ResponseEntity<>(new MyResponce<>(null,"internal server error"),HttpStatus.CONFLICT);
+        }
+    }
+    @PostMapping("/uploadImage")
+    public ResponseEntity<MyResponce> uploadUserImage(@RequestBody User user){
+        try{
+            userService.uploadImage(user);
+            return new ResponseEntity<>(new MyResponce<>(null,"image Uploaded"),HttpStatus.OK);
+
+        }catch (MyExeption exeption){
+            return new ResponseEntity<>(new MyResponce<>(null,exeption.getMessage()),HttpStatus.CONFLICT);
         }
     }
     @PostMapping("/login")

@@ -2,6 +2,7 @@ package com.brainstation.arturitos.domain;
 
 import com.brainstation.arturitos.dtos.UserDTO;
 import com.brainstation.arturitos.utils.GroupValidator;
+import com.brainstation.arturitos.utils.ImageUploadValidatorGroup;
 import com.brainstation.arturitos.utils.LoginValidatorGroup;
 import org.springframework.lang.NonNull;
 
@@ -22,7 +23,7 @@ public class User {
     private String password;
 
     @NonNull
-    @NotEmpty(groups = {GroupValidator.class}, message = "Field :userImgUrl: must not be empty")
+    @NotEmpty(groups = {    ImageUploadValidatorGroup.class}, message = "Field :userImgUrl: must not be empty")
     private String userImgUrl;
 
     public User(){}

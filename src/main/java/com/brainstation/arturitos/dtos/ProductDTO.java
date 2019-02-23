@@ -26,12 +26,6 @@ public class ProductDTO {
     @Column(name = "description")
     private String desription;
 
-    @Column(name = "likes")
-    private int likes;
-
-    @Column(name = "dislikes")
-    private int dislikes;
-
     @OneToMany(cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private List<ProductImagesDTO> imagesDTOS;
@@ -88,21 +82,6 @@ public class ProductDTO {
         this.desription = desription;
     }
 
-    public int getLikes() {
-        return likes;
-    }
-
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
-
-    public int getDislikes() {
-        return dislikes;
-    }
-
-    public void setDislikes(int dislikes) {
-        this.dislikes = dislikes;
-    }
 
     public List<ProductImagesDTO> getImagesDTOS() {
         return imagesDTOS;
