@@ -2,6 +2,8 @@ package com.brainstation.arturitos.domain;
 
 import com.brainstation.arturitos.dtos.ProductDTO;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,14 +12,14 @@ public class Product {
     private String productName;
     private String description;
     private String seller;
-    private double price;
+    private String price;
     private List<ProductImage> productImages;
     private List<Category> categories;
 
     public Product(){}
 
     public Product(ProductDTO productDTO){
-        this.price = productDTO.getPrice();
+        this.price = productDTO.getPrice().toString();
         this.categories = productDTO.getCategoryDTOS().stream().map(Category::new).collect(Collectors.toList());
         this.productImages = productDTO.getImagesDTOS().stream().map(ProductImage::new).collect(Collectors.toList());
         this.productName = productDTO.getName();
@@ -50,11 +52,11 @@ public class Product {
         this.seller = seller;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 

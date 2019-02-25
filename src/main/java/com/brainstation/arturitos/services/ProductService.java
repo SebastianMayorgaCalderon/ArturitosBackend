@@ -38,13 +38,17 @@ public class ProductService {
 
     }
 
-    public Page<Product> findByCategroy(String category, Pageable pageable) throws MyExeption{
+    public Page<Product> findByCategroy(String category, Pageable pageable, String nameToSearch) throws MyExeption{
         Optional<CategoryDTO> categoryDTO = categoryRepository.findByName(category);
         if(categoryDTO.isPresent()){
-            return porductRepository.findAllByCategoryDTOSContains(pageable, categoryDTO.get()).map(Product::new);
+            return porductRepository.findAllByCategoryDTOSContainsAndNameContaining(pageable, categoryDTO.get(),nameToSearch).map(Product::new);
         }else{
             throw new MyExeption("Category does not exist");
         }
+    }
+
+    public Page<Product> findAllByName(String nameToSearch, Pageable pageable){
+        return porductRepository.findAllByNameContaining(pageable,nameToSearch).map(Product::new);
     }
 
 }

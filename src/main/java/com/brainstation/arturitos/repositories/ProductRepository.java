@@ -11,5 +11,7 @@ public interface ProductRepository extends JpaRepository<ProductDTO, Integer> {
     @Override
     Page<ProductDTO> findAll(Pageable pageable);
 
-    Page<ProductDTO> findAllByCategoryDTOSContains(Pageable pageable, CategoryDTO categoryDTO);
+    Page<ProductDTO> findAllByCategoryDTOSContainsAndNameContaining(Pageable pageable, CategoryDTO categoryDTO,String name);
+
+    Page<ProductDTO> findAllByNameContaining(Pageable page,String name);
 }

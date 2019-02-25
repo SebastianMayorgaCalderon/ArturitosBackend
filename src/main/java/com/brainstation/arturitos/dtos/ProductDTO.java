@@ -1,8 +1,8 @@
 package com.brainstation.arturitos.dtos;
 
-import com.brainstation.arturitos.domain.Category;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity(name = "Product")
@@ -21,7 +21,7 @@ public class ProductDTO {
     private String seller;
 
     @Column(name="price")
-    private double price;
+    private BigDecimal price;
 
     @Column(name = "description")
     private String desription;
@@ -66,11 +66,11 @@ public class ProductDTO {
         this.seller = seller;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
