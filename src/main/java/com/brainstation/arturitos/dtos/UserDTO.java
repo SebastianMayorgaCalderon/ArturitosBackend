@@ -35,7 +35,33 @@ public class UserDTO {
     @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private List<OrderDTO> orders;
 
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private List<ProductDTO> Products;
+
+    @OneToMany(cascade = javax.persistence.CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private List<CardDTO> cards;
+
+
+
     public UserDTO(){}
+
+    public List<ProductDTO> getProducts() {
+        return Products;
+    }
+
+    public void setProducts(List<ProductDTO> products) {
+        Products = products;
+    }
+
+    public List<CardDTO> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<CardDTO> cards) {
+        this.cards = cards;
+    }
 
     public UserDTO(User user){
         this.email = user.getEmail();

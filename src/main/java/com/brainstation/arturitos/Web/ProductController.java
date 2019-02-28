@@ -26,7 +26,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/by-id/{id}")
     public ResponseEntity<MyResponce> getProductById(@PathVariable int id) {
         try {
             return ResponseEntity.ok().body(new MyResponce<>(productService.findById(id), "okk"));
@@ -45,6 +45,40 @@ public class ProductController {
             return new ResponseEntity(new MyResponce<>(ex.getMessage(), "Error"), HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/user-products")
+    public ResponseEntity getProductsByUser(@RequestAttribute String email, @RequestAttribute String username,@RequestParam("name") String name, Pageable pageable) {
+        try {
+            Page<Product> page = productService.findByUser(email,username,name, pageable);
+            HttpHeaders header = PaginationUtil.generatePaginationHttpHeaders(page, "/product");
+            return ResponseEntity.ok().headers(header).body(new MyResponce<>(page, "ok"));
+        } catch (MyExeption ex) {
+            return new ResponseEntity(new MyResponce<>(ex.getMessage(), "Error"), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/user-products/{category}")
+    public ResponseEntity getProductsByUser(@RequestParam("name") String name,@RequestAttribute String email, @RequestAttribute String username, Pageable pageable, @PathVariable String category) {
+        try {
+            Page<Product> page = productService.findByUserAndCategory(email,username,name, pageable, category);
+            HttpHeaders header = PaginationUtil.generatePaginationHttpHeaders(page, "/product");
+            return ResponseEntity.ok().headers(header).body(new MyResponce<>(page, "ok"));
+        } catch (MyExeption ex) {
+            return new ResponseEntity(new MyResponce<>(ex.getMessage(), "Error"), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/user-products/resell")
+    public ResponseEntity resellBodies(@RequestAttribute String email, @RequestAttribute String username, @RequestBody int id){
+        try{
+            Product product = productService.reSellProduct(email,username,id);
+            return new ResponseEntity(new MyResponce<>(product,"OK"),HttpStatus.OK);
+        }catch (MyExeption ex){
+            return new ResponseEntity(new MyResponce<>(ex.getMessage(),"ERROR"),HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+
     @GetMapping
     public ResponseEntity findAllByName(Pageable pageable, @RequestParam("name") String name) {
         Page<Product> page = productService.findAllByName(name, pageable);

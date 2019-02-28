@@ -1,6 +1,8 @@
 package com.brainstation.arturitos.dtos;
 
 
+import com.brainstation.arturitos.domain.Product;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -23,6 +25,9 @@ public class ProductDTO {
     @Column(name="price")
     private BigDecimal price;
 
+    @Column(name="avaliable")
+    private Boolean avaliable;
+
     @Column(name = "description")
     private String desription;
 
@@ -32,15 +37,23 @@ public class ProductDTO {
 
     @OneToMany(cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
-    private List<ProductOrderDTO> productOrderDTOS;
-
-    @OneToMany(cascade = javax.persistence.CascadeType.ALL)
-    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private List<CommentDTO> comments;
 
     @ManyToMany(mappedBy = "products")
     private List<CategoryDTO> categoryDTOS;
 
+    @ManyToMany(mappedBy = "products")
+    private List<OrderDTO> orderDTOS;
+
+    @ManyToOne
+    @JoinColumn(name="user_id", referencedColumnName = "user_id")
+    private UserDTO userDTO;
+
+    public ProductDTO(){}
+
+    public ProductDTO(Product product) {
+        this.id= product.getId();
+    }
 
     public int getId() {
         return id;
@@ -107,13 +120,27 @@ public class ProductDTO {
         this.categoryDTOS = categoryDTOS;
     }
 
-
-
-    public List<ProductOrderDTO> getProductOrderDTOS() {
-        return productOrderDTOS;
+    public List<OrderDTO> getOrderDTOS() {
+        return orderDTOS;
     }
 
-    public void setProductOrderDTOS(List<ProductOrderDTO> productOrderDTOS) {
-        this.productOrderDTOS = productOrderDTOS;
+    public void setOrderDTOS(List<OrderDTO> orderDTOS) {
+        this.orderDTOS = orderDTOS;
+    }
+
+    public Boolean getAvaliable() {
+        return avaliable;
+    }
+
+    public void setAvaliable(Boolean avaliable) {
+        this.avaliable = avaliable;
+    }
+
+    public UserDTO getUserDTO() {
+        return userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 }

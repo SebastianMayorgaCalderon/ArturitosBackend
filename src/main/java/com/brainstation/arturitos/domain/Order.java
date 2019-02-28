@@ -2,7 +2,6 @@ package com.brainstation.arturitos.domain;
 
 
 import com.brainstation.arturitos.dtos.OrderDTO;
-import com.brainstation.arturitos.dtos.ProductOrderDTO;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,26 +10,25 @@ public class Order {
 
     private int id;
 
-    private List<ProductOrder> products;
+    private List<Product> products;
 
     private String name;
 
-    private String status;
+    private String cardToken;
 
     public Order(){}
 
     public Order(OrderDTO orderDTO){
-        this.products = orderDTO.getProductOrderDTOS().stream().map(ProductOrder::new).collect(Collectors.toList());
+        this.products = orderDTO.getProducts().stream().map(Product::new).collect(Collectors.toList());
         this.name = orderDTO.getName();
-        this.status = orderDTO.getStatus();
         this.id = orderDTO.getId();
     }
 
-    public List<ProductOrder> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<ProductOrder> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 
@@ -50,11 +48,11 @@ public class Order {
         this.name = name;
     }
 
-    public String getStatus() {
-        return status;
+    public String getCardToken() {
+        return cardToken;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCardToken(String cardToken) {
+        this.cardToken = cardToken;
     }
 }

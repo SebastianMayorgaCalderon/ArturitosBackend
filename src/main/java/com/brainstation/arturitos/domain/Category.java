@@ -9,6 +9,7 @@ public class Category {
         this.name = categoryDTO.getName();
         this.id = categoryDTO.getId();
     }
+    public Category(){}
 
     public int getId() {
         return id;

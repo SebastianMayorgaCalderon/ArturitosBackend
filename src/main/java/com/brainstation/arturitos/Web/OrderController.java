@@ -37,10 +37,10 @@ public class OrderController {
         }
     }
 
-    @GetMapping("/status/{status}")
-    public ResponseEntity getOrdersByUser(@RequestAttribute String email, @RequestAttribute String username, @PathVariable String status, Pageable pageable) {
+    @GetMapping("/my-orders")
+    public ResponseEntity getOrdersByUser(@RequestAttribute String email, @RequestAttribute String username, Pageable pageable) {
         try {
-            Page<Order> orders = this.orderService.getAllUserOrdersByStatus(username, email, status, pageable);
+            Page<Order> orders = this.orderService.getAllUserOrdersByStatus(username, email, pageable);
             return new ResponseEntity(new MyResponce<>(orders, "Okk"), HttpStatus.OK);
         } catch (MyExeption ex) {
             return new ResponseEntity(new MyResponce<>(ex.getMessage(), "ERROR"), HttpStatus.CONFLICT);

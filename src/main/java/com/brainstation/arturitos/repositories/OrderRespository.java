@@ -1,8 +1,6 @@
 package com.brainstation.arturitos.repositories;
 
-import com.brainstation.arturitos.domain.Product;
 import com.brainstation.arturitos.dtos.OrderDTO;
-import com.brainstation.arturitos.dtos.ProductDTO;
 import com.brainstation.arturitos.dtos.UserDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface OrderRespository extends JpaRepository<OrderDTO, Integer> {
-    Page<OrderDTO> findAllByUserAndStatus(Pageable pageable,UserDTO user, String status);
+    Page<OrderDTO> findAllByUser(Pageable pageable,UserDTO user);
     Optional<OrderDTO> findByUserAndId(UserDTO user, int id);
 }

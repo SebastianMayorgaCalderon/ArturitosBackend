@@ -15,6 +15,7 @@ public class Product {
     private String price;
     private List<ProductImage> productImages;
     private List<Category> categories;
+    private String owner;
 
     public Product(){}
 
@@ -26,6 +27,9 @@ public class Product {
         this.description = productDTO.getDesription();
         this.seller = productDTO.getSeller();
         this.id= productDTO.getId();
+        if(productDTO.getUserDTO()!=null){
+            this.owner = productDTO.getUserDTO().getUsername();
+        }
     }
 
     public String getProductName() {

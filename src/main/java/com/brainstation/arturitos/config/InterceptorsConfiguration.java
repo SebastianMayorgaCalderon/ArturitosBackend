@@ -17,7 +17,7 @@ public class InterceptorsConfiguration implements WebMvcConfigurer {
                 .excludePathPatterns("/user/uploadImage")
                 .excludePathPatterns("/user/login")
                 .excludePathPatterns("/product")
-                .excludePathPatterns("/product/*")
+                .excludePathPatterns("/product/by-id/*")
                 .excludePathPatterns("/product/category/*")
                 .excludePathPatterns("/category");
     }
